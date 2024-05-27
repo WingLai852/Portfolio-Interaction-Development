@@ -13,7 +13,6 @@ let ball = {
     dy: 0
 };
 
-
 function drawBall() {
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
@@ -22,8 +21,6 @@ function drawBall() {
     ctx.closePath();
 }
 
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
 
 function updateBallPosition() {
     ball.x += ball.dx;
@@ -45,7 +42,6 @@ function updateBallPosition() {
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-
 
 function draw() {
     clearCanvas();
