@@ -25,11 +25,13 @@ let currentQuestionIndex = 0;
 
 document.getElementById('start').addEventListener('click', askQuestion);
 
+// Spreek de tekst uit
 function speak(text) {
     const utterance = new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(utterance);
 }
 
+// Luister naar de gebruiker en geef het resultaat terug
 function listen() {
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     recognition.lang = 'nl-NL';
@@ -40,18 +42,19 @@ function listen() {
     });
 }
 
+// Vraag de gebruiker om de eerste vraag te beantwoorden
 async function askQuestion() {
     if (currentQuestionIndex >= questions.length) {
         document.getElementById('feedback').textContent = "Je hebt alle vragen beantwoord!";
         speak("Je hebt alle vragen beantwoord!");
         return;
     }
-
+    // Stel de vraag en spreek deze uit
     const question = questions[currentQuestionIndex];
     document.getElementById('question').textContent = question.text;
     speak(question.text);
 
-    
+    // Wacht 5 seconden voordat we het antwoord van de gebruiker verwachten
     setTimeout(async () => {
         const userAnswer = await listen();
 
